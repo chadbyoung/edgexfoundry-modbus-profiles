@@ -4,15 +4,18 @@
 
 
 # Readme for DataNab MBUS_RTH_LCD
-The DataNab MBUS__RTH_LCD is a Modbus Enabled Room Temperature/Humidity Sensor
+The DataNab MBUS_RTH_LCD is a Modbus Enabled Room Temperature/Humidity Sensor
 with LCD and Dual 0~10V Out.  
 
-Modbus device address = Reg 6 = 254 (default)
-Room Temp in DegF x 10 = Reg 100, bytes 2
-Room Temp in DegC x 10 = Reg 101, bytes 2
-Room Humidity in %RH x 10 = Reg 102, bytes 2
+| Variable       | Unit    | Add. Hex | Add. Dec | Format | Size | Status |
+| :---           | :---:   | :---:    | :---:    | :---:  | :---:| :---:  |
+| Device Address |         | 0x0000   | 6        | Int    | 2    | Read   |
+| Degrees F      | F x 10  | 0x0064   | 100      | Int    | 2    | Read   |
+| Device Address | C x 10  | 0x0065   | 101      | Int    | 2    | Read   |
+| Device Address | RH x 10 | 0x0066   | 102      | Int    | 2    | Read   |
 
-Mode details can be found here:
+
+Mode details can be found here:  
 http://www.datanab.com/sensors/modbus_rth_lcd.php  
 http://www.datanab.com/zc/docs/sensors/MBus_RTH_LCD.pdf  
 
