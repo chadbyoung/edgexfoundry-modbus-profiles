@@ -1,0 +1,113 @@
+#################################################################################
+# Copyright 2017 Dell Inc.
+# Chad Young <chad.young@dell.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+# in compliance with the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License
+# is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+# or implied. See the License for the specific language governing permissions and limitations under
+# the License.
+#
+#################################################################################
+
+name: "Modbus-Room-Temperature-Humidity-Sensor"
+manufacturer: "DATANAB"
+model: "MBUS_RTH_LDC"
+labels: [ 'temperature', 'humidity']
+description: "Modbus Enabled Room Temperature/Humididty Sensor with LCD"
+labels:
+    - "modbus"
+    - "industrial"
+    - "temperature"
+    - "humidity"
+
+deviceResources:
+      -
+        name: TemperatureDegF
+        description: "Room Temperature in Degrees Fahrenheit."
+        attributes:
+            { HoldingRegister: "101" }
+        properties:
+            value:
+                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "40", maximum: "122", defaultValue: "1"}
+            units:
+                { type: "String", readWrite: "R", defaultValue: "F"}
+      -
+        name: TemperatureDegC
+        description: "Room Temperature in Degrees Celsius."
+        attributes:
+            { HoldingRegister: "101" }
+        properties:
+            value:
+                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "5", maximum: "50", defaultValue: "1"}
+            units:
+                { type: "String", readWrite: "R", defaultValue: "C"}
+
+        name: HumidityPercentRH
+        description: "Room Humidity in %RH."
+        attributes:
+            { HoldingRegister: "102" }
+        properties:
+            value:
+                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "0", maximum: "95", defaultValue: "1"}
+            units:
+                { type: "String", readWrite: "R", defaultValue: "RH"}
+
+resources:
+      -
+        name: TemperatureDegF
+        get:
+          - { index: "1", operation: "get", object: "TemperatureDegF", parameter: "TemperatureDegF", property: "value" }
+      -
+        name: TemperatureDegC
+        get:
+          - { index: "1", operation: "get", object: "TemperatureDegC", parameter: "TemperatureDegC", property: "value" }
+      -
+        name: HumidityPercentRH
+        get:
+          - { index: "1", operation: "get", object: "HumidityPercentRH", parameter: "HumidityPercentRH", property: "value" }
+
+commands:
+      -
+        name: TemperatureDegF
+        get:
+            path: "/api/v1/device/{deviceId}/TemperatureDegF"
+            responces: 
+              -
+                code: "200"
+                description: "Get the temperature in degrees F"
+                expectedValues: ["TemperatureDegF"]
+              -
+                code: "503"
+                description: "service unavailable"
+                expectedValues: []
+        name: TemperatureDegC
+        get:
+            path: "/api/v1/device/{deviceId}/TemperatureDegC"
+            responces: 
+              -
+                code: "200"
+                description: "Get the temperature in degrees C"
+                expectedValues: ["TemperatureDegC"]
+              -
+                code: "503"
+                description: "service unavailable"
+                expectedValues: []
+        name: HumidityPercentRH
+        get:
+            path: "/api/v1/device/{deviceId}/HumidityPercentRH"
+            responces: 
+              -
+                code: "200"
+                description: "Get the humidity in %RH"
+                expectedValues: ["HumidityPercentRH"]
+              -
+                code: "503"
+                description: "service unavailable"
+                expectedValues: []
+
+
