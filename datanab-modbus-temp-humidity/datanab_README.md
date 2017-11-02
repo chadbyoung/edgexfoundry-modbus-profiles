@@ -11,8 +11,8 @@ with LCD and Dual 0~10V Out.
 | :---           | :---:   | :---:    | :---:    | :---:  | :---:| :---:  |
 | Device Address |         | 0x0000   | 6        | Int    | 2    | Read   |
 | Degrees F      | F x 10  | 0x0064   | 100      | Int    | 2    | Read   |
-| Device Address | C x 10  | 0x0065   | 101      | Int    | 2    | Read   |
-| Device Address | RH x 10 | 0x0066   | 102      | Int    | 2    | Read   |
+| Device Register | C x 10  | 0x0065   | 101      | Int    | 2    | Read   |
+| Device Register | RH x 10 | 0x0066   | 102      | Int    | 2    | Read   |
 
 
 Mode details can be found here:  
