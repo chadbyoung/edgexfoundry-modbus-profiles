@@ -77,7 +77,7 @@ commands:
               -
                 code: "200"
                 description: "Get the temperature in degrees F"
-                expectedValues: ["TemperatureDegF_100"]
+                expectedValues: ["TemperatureDegF"]
               -
                 code: "503"
                 description: "service unavailable"
