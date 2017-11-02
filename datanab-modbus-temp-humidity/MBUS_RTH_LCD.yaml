@@ -33,40 +33,40 @@ deviceResources:
                 { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "40", maximum: "122", defaultValue: "1"}
             units:
                 { type: "String", readWrite: "R", defaultValue: "F"}
-      -
-        name: "TemperatureDegC_101"
-        description: "Room Temperature in Degrees Celsius."
-        attributes:
-            { type: "doublebyteInt", instance: "101" }
-        properties:
-            value:
-                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "5", maximum: "50", defaultValue: "1"}
-            units:
-                { type: "String", readWrite: "R", defaultValue: "C"}
-
-        name: "HumidityPercentRH_102"
-        description: "Room Humidity in %RH."
-        attributes:
-            { type: "doublebyteInt", instance: "102" }
-        properties:
-            value:
-                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "0", maximum: "95", defaultValue: "1"}
-            units:
-                { type: "String", readWrite: "R", defaultValue: "RH"}
+#      -
+#        name: "TemperatureDegC_101"
+#        description: "Room Temperature in Degrees Celsius."
+#        attributes:
+#            { type: "doublebyteInt", instance: "101" }
+#        properties:
+#            value:
+#                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "5", maximum: "50", defaultValue: "1"}
+#            units:
+#                { type: "String", readWrite: "R", defaultValue: "C"}
+#
+#        name: "HumidityPercentRH_102"
+#        description: "Room Humidity in %RH."
+#        attributes:
+#            { type: "doublebyteInt", instance: "102" }
+#        properties:
+#            value:
+#                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "0", maximum: "95", defaultValue: "1"}
+#            units:
+#                { type: "String", readWrite: "R", defaultValue: "RH"}
 
 resources:
       -
         name: "TemperatureDegF"
         get:
           - { index: "1", operation: "get", object: "TemperatureDegF_100", parameter: "TemperatureDegF", property: "value" }
-      -
-        name: TemperatureDegC
-        get:
-          - { index: "1", operation: "get", object: "TemperatureDegC_101", parameter: "TemperatureDegC", property: "value" }
-      -
-        name: HumidityPercentRH
-        get:
-          - { index: "1", operation: "get", object: "HumidityPercentRH_102", parameter: "HumidityPercentRH", property: "value" }
+#     -
+#        name: TemperatureDegC
+#        get:
+#          - { index: "1", operation: "get", object: "TemperatureDegC_101", parameter: "TemperatureDegC", property: "value" }
+#      -
+#        name: HumidityPercentRH
+#        get:
+#          - { index: "1", operation: "get", object: "HumidityPercentRH_102", parameter: "HumidityPercentRH", property: "value" }
 
 commands:
       -
@@ -82,29 +82,27 @@ commands:
                 code: "503"
                 description: "service unavailable"
                 expectedValues: []
-        name: "TemperatureDegC"
-        get:
-            path: "/api/v1/device/{deviceId}/TemperatureDegC"
-            responces: 
-              -
-                code: "200"
-                description: "Get the temperature in degrees C"
-                expectedValues: ["TemperatureDegC_101"]
-              -
-                code: "503"
-                description: "service unavailable"
-                expectedValues: []
-        name: "HumidityPercentRH"
-        get:
-            path: "/api/v1/device/{deviceId}/HumidityPercentRH"
-            responces: 
-              -
-                code: "200"
-                description: "Get the humidity in %RH"
-                expectedValues: ["HumidityPercentRH_102"]
-              -
-                code: "503"
-                description: "service unavailable"
-                expectedValues: []
-
-
+#        name: "TemperatureDegC"
+#        get:
+#            path: "/api/v1/device/{deviceId}/TemperatureDegC"
+#            responces: 
+#              -
+#                code: "200"
+#                description: "Get the temperature in degrees C"
+#                expectedValues: ["TemperatureDegC_101"]
+#              -
+#                code: "503"
+#                description: "service unavailable"
+#                expectedValues: []
+#        name: "HumidityPercentRH"
+#        get:
+#            path: "/api/v1/device/{deviceId}/HumidityPercentRH"
+#            responces: 
+#              -
+#                code: "200"
+#                description: "Get the humidity in %RH"
+#                expectedValues: ["HumidityPercentRH_102"]
+#              -
+#                code: "503"
+#                description: "service unavailable"
+#                expectedValues: []
