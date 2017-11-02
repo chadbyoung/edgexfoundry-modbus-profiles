@@ -73,7 +73,7 @@ commands:
         name: "TemperatureDegF"
         get:
             path: "/api/v1/device/{deviceId}/TemperatureDegF"
-            responces: 
+            responses: 
               -
                 code: "200"
                 description: "Get the temperature in degrees F"
@@ -85,7 +85,7 @@ commands:
 #        name: "TemperatureDegC"
 #        get:
 #            path: "/api/v1/device/{deviceId}/TemperatureDegC"
-#            responces: 
+#            responses: 
 #              -
 #                code: "200"
 #                description: "Get the temperature in degrees C"
@@ -97,7 +97,7 @@ commands:
 #        name: "HumidityPercentRH"
 #        get:
 #            path: "/api/v1/device/{deviceId}/HumidityPercentRH"
-#            responces: 
+#            responses: 
 #              -
 #                code: "200"
 #                description: "Get the humidity in %RH"
