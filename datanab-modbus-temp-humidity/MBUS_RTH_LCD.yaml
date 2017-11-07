@@ -27,10 +27,10 @@ deviceResources:
         name: "TemperatureDegF_100"
         description: "Room Temperature in Degrees Fahrenheit."
         attributes:
-            { type: "doublebyteInt", instance: "100" }
+            { HoldingRegister: "100" }
         properties:
             value:
-                { type: "Integer", size: "2", scale: "10", readWrite: "RW", minimum: "40", maximum: "122", defaultValue: "1"}
+                { type: "Float", readWrite: "RW", size: "2", scale: "10", minimum: "40", maximum: "122", defaultValue: "1"}
             units:
                 { type: "String", readWrite: "R", defaultValue: "F"}
 #      -
