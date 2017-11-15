@@ -15,7 +15,7 @@
 #################################################################################
 name: "MBUS_RTH_LCD"
 manufacturer: "DATANAB"
-model: "MBUS_RTH_LDC"
+model: "MBUS_RTH_LCD"
 labels: 
  - "temperature"
  - "modbus"
@@ -24,49 +24,49 @@ description: "Modbus Enabled Room Temperature/Humididty Sensor with LCD"
 
 deviceResources:
       -
-        name: "TemperatureDegF_101"
+        name: "TemperatureDegF"
         description: "Room Temperature in Degrees Fahrenheit."
+        attributes:
+            { HoldingRegister: "100" }
+        properties:
+            value:
+                { type: "Float", readWrite: "R", size: "1", scale: "0.1", minimum: "40.0", maximum: "122.0", defaultValue: "1"}
+            units:
+                { type: "String", readWrite: "R", defaultValue: "degrees fahrenheit"}
+      -
+        name: "TemperatureDegC"
+        description: "Room Temperature in Degrees Celsius."
         attributes:
             { HoldingRegister: "101" }
         properties:
             value:
-                { type: "Float", readWrite: "RW", size: "1", scale: "0.0", minimum: "40.0", maximum: "122.0", defaultValue: "1"}
+                { type: "Float", size: "1", scale: "0.1", readWrite: "R", minimum: "5.0", maximum: "50.0", defaultValue: "1"}
             units:
-                { type: "String", readWrite: "R", defaultValue: "degrees fahrenheit"}
+                { type: "String", readWrite: "R", defaultValue: "degrees celsius"}
       -
-        name: "TemperatureDegC_102"
-        description: "Room Temperature in Degrees Celsius."
+        name: "HumidityPercentRH"
+        description: "Room Humidity in %RH."
         attributes:
             { HoldingRegister: "102" }
         properties:
             value:
-                { type: "Float", size: "1", scale: "0.0", readWrite: "RW", minimum: "5.0", maximum: "50.0", defaultValue: "1"}
+                { type: "Float", size: "1", scale: "0.1", readWrite: "R", minimum: "0.0", maximum: "95", defaultValue: "1"}
             units:
-                { type: "String", readWrite: "R", defaultValue: "degrees celsius"}
-
-#        name: "HumidityPercentRH_103"
-#        description: "Room Humidity in %RH."
-#        attributes:
-#            { HoldingRegister: "103" }
-#        properties:
-#            value:
-#                { type: "Float", size: "1", scale: "0.0", readWrite: "RW", minimum: "0.0", maximum: "95", defaultValue: "1"}
-#            units:
-#                { type: "String", readWrite: "R", defaultValue: "%RH"}
+                { type: "String", readWrite: "R", defaultValue: "%RH"}
 
 resources:
       -
         name: "TemperatureDegF"
         get:
-          - { index: "1", operation: "get", object: "TemperatureDegF_101", parameter: "TemperatureDegF", property: "value" }
-     -
+          - { index: "1", operation: "get", object: "TemperatureDegF", parameter: "TemperatureDegF", property: "value" }
+      -
         name: "TemperatureDegC"
         get:
-          - { index: "1", operation: "get", object: "TemperatureDegC_102", parameter: "TemperatureDegC", property: "value" }
-#      -
-#        name: "HumidityPercentRH"
-#        get:
-#          - { index: "1", operation: "get", object: "HumidityPercentRH_103", parameter: "HumidityPercentRH", property: "value" }
+          - { index: "1", operation: "get", object: "TemperatureDegC", parameter: "TemperatureDegC", property: "value" }
+      -
+        name: "HumidityPercentRH"
+        get:
+          - { index: "1", operation: "get", object: "HumidityPercentRH", parameter: "HumidityPercentRH", property: "value" }
 
 commands:
       -
@@ -82,6 +82,7 @@ commands:
                 code: "503"
                 description: "service unavailable"
                 expectedValues: []
+      -
         name: "TemperatureDegC"
         get:
             path: "/api/v1/device/{deviceId}/TemperatureDegC"
@@ -89,20 +90,21 @@ commands:
               -
                 code: "200"
                 description: "Get the temperature in degrees C"
-                expectedValues: ["TemperatureDegC_101"]
+                expectedValues: ["TemperatureDegC"]
               -
                 code: "503"
                 description: "service unavailable"
                 expectedValues: []
-#        name: "HumidityPercentRH"
-#        get:
-#            path: "/api/v1/device/{deviceId}/HumidityPercentRH"
-#            responses: 
-#              -
-#                code: "200"
-#                description: "Get the humidity in %RH"
-#                expectedValues: ["HumidityPercentRH_103"]
-#              -
-#                code: "503"
-#                description: "service unavailable"
-#                expectedValues: []
+      -
+        name: "HumidityPercentRH"
+        get:
+            path: "/api/v1/device/{deviceId}/HumidityPercentRH"
+            responses: 
+              -
+                code: "200"
+                description: "Get the humidity in %RH"
+                expectedValues: ["HumidityPercentRH_103"]
+              -
+                code: "503"
+                description: "service unavailable"
+                expectedValues: []
