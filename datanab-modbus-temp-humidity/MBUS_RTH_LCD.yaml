@@ -103,7 +103,7 @@ commands:
               -
                 code: "200"
                 description: "Get the humidity in %RH"
-                expectedValues: ["HumidityPercentRH_103"]
+                expectedValues: ["HumidityPercentRH"]
               -
                 code: "503"
                 description: "service unavailable"
